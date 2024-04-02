@@ -43,7 +43,7 @@
                 </field>
             </record>
             <record id="cn_6403" model="account.report.line">
-                <field name="name">　　税金及附加</field>
+                <field name="name">　　　税金及附加</field>
                 <field name="code">cn_6403</field>
                 <field name="groupby">account_id</field>
                 <field name="foldable" eval="True"/>
@@ -57,7 +57,7 @@
                 </field>
             </record>
             <record id="cn_6601" model="account.report.line">
-                <field name="name">　　销售费用</field>
+                <field name="name">　　　销售费用</field>
                 <field name="code">cn_6601</field>
                 <field name="groupby">account_id</field>
                 <field name="foldable" eval="True"/>
@@ -71,7 +71,7 @@
                 </field>
             </record>
             <record id="cn_6602" model="account.report.line">
-                <field name="name">　　管理费用</field>
+                <field name="name">　　　管理费用</field>
                 <field name="code">cn_6602</field>
                 <field name="groupby">account_id</field>
                 <field name="foldable" eval="True"/>
@@ -85,7 +85,7 @@
                 </field>
             </record>
             <record id="cn_5301" model="account.report.line">
-                <field name="name">　　研发费用</field>
+                <field name="name">　　　研发费用</field>
                 <field name="code">cn_5301</field>
                 <field name="groupby">account_id</field>
                 <field name="foldable" eval="True"/>
@@ -99,7 +99,7 @@
                 </field>
             </record>
             <record id="cn_6603" model="account.report.line">
-                <field name="name">　　财务费用</field>
+                <field name="name">　　　财务费用</field>
                 <field name="code">cn_6603</field>
                 <field name="groupby">account_id</field>
                 <field name="foldable" eval="True"/>
@@ -113,7 +113,7 @@
                 </field>
             </record>
             <record id="cn_6411" model="account.report.line">
-                <field name="name">　　其中：利息费用</field>
+                <field name="name">　　　其中：利息费用</field>
                 <field name="code">cn_6411</field>
                 <field name="groupby">account_id</field>
                 <field name="foldable" eval="True"/>
@@ -127,7 +127,7 @@
                 </field>
             </record>
             <record id="cn_6011" model="account.report.line">
-                <field name="name">　　　　　利息收入</field>
+                <field name="name">　　　　　　利息收入</field>
                 <field name="code">cn_6011</field>
                 <field name="groupby">account_id</field>
                 <field name="foldable" eval="True"/>
@@ -150,6 +150,20 @@
                         <field name="label">balance</field>
                         <field name="engine">domain</field>
                         <field name="formula" eval="[('account_id.code','=like','6117%')]"/>
+                        <field name="subformula">sum</field>
+                    </record>
+                </field>
+            </record>
+            <record id="cn_6111" model="account.report.line">
+                <field name="name">　　　投资收益</field>
+                <field name="code">cn_6111</field>
+                <field name="groupby">account_id</field>
+                <field name="foldable" eval="True"/>
+                <field name="expression_ids">
+                    <record id="cn_6111_balance" model="account.report.expression">
+                        <field name="label">balance</field>
+                        <field name="engine">domain</field>
+                        <field name="formula" eval="[('account_id.code','=like','6111%')]"/>
                         <field name="subformula">sum</field>
                     </record>
                 </field>
