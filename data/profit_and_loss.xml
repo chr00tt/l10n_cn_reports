@@ -168,6 +168,112 @@
                     </record>
                 </field>
             </record>
+            <record id="cn_6111_1" model="account.report.line">
+                <field name="name">　　　　其中：对联营企业和合营企业的投资收益</field>
+                <field name="code">cn_6111_1</field>
+                <field name="groupby">account_id</field>
+                <field name="foldable" eval="True"/>
+                <field name="expression_ids">
+                    <record id="cn_6111_1_balance" model="account.report.expression">
+                        <field name="label">balance</field>
+                        <field name="engine">domain</field>
+                        <field name="formula" eval="[('account_id.code','=like','6111%')]"/>
+                        <field name="subformula">sum</field>
+                    </record>
+                </field>
+            </record>
+            <record id="cn_6101" model="account.report.line">
+                <field name="name">　　　公允价值变动收益</field>
+                <field name="code">cn_6101</field>
+                <field name="groupby">account_id</field>
+                <field name="foldable" eval="True"/>
+                <field name="expression_ids">
+                    <record id="cn_6101_balance" model="account.report.expression">
+                        <field name="label">balance</field>
+                        <field name="engine">domain</field>
+                        <field name="formula" eval="[('account_id.code','=like','6101%')]"/>
+                        <field name="subformula">sum</field>
+                    </record>
+                </field>
+            </record>
+            <record id="cn_6701" model="account.report.line">
+                <field name="name">　　　资产减值损失</field>
+                <field name="code">cn_6701</field>
+                <field name="groupby">account_id</field>
+                <field name="foldable" eval="True"/>
+                <field name="expression_ids">
+                    <record id="cn_6701_balance" model="account.report.expression">
+                        <field name="label">balance</field>
+                        <field name="engine">domain</field>
+                        <field name="formula" eval="[('account_id.code','=like','6701%')]"/>
+                        <field name="subformula">sum</field>
+                    </record>
+                </field>
+            </record>
+            <record id="cn_6115" model="account.report.line">
+                <field name="name">　　　资产处置收益</field>
+                <field name="code">cn_6115</field>
+                <field name="groupby">account_id</field>
+                <field name="foldable" eval="True"/>
+                <field name="expression_ids">
+                    <record id="cn_6115_balance" model="account.report.expression">
+                        <field name="label">balance</field>
+                        <field name="engine">domain</field>
+                        <field name="formula" eval="[('account_id.code','=like','6115%')]"/>
+                        <field name="subformula">sum</field>
+                    </record>
+                </field>
+            </record>
+
+            <record id="operating_profit" model="account.report.line">
+                <field name="name">二、营业利润</field>
+                <field name="code">OP</field>
+                <field name="expression_ids">
+                    <record id="operating_profit_balance" model="account.report.expression">
+                        <field name="label">balance</field>
+                        <field name="engine">aggregation</field>
+                        <field name="formula">cn_6001.balance - cn_6401.balance - cn_6403.balance - cn_6601.balance - cn_6602.balance - cn_5301.balance - cn_6603.balance + cn_6117.balance + cn_6111.balance + cn_6101.balance + cn_6701.balance + cn_6115.balance</field>
+                        <field name="date_scope">normal</field>
+                    </record>
+                </field>
+            </record>
+            <record id="cn_6301" model="account.report.line">
+                <field name="name">　加：营业外收入</field>
+                <field name="code">cn_6301</field>
+                <field name="expression_ids">
+                    <record id="cn_6301_balance" model="account.report.expression">
+                        <field name="label">balance</field>
+                        <field name="engine">domain</field>
+                        <field name="formula" eval="[('account_id.code','=like','6301%')]"/>
+                        <field name="subformula">sum</field>
+                    </record>
+                </field>
+            </record>
+            <record id="cn_6711" model="account.report.line">
+                <field name="name">　减：营业外支出</field>
+                <field name="code">cn_6711</field>
+                <field name="expression_ids">
+                    <record id="cn_6711_balance" model="account.report.expression">
+                        <field name="label">balance</field>
+                        <field name="engine">domain</field>
+                        <field name="formula" eval="[('account_id.code','=like','6711%')]"/>
+                        <field name="subformula">sum</field>
+                    </record>
+                </field>
+            </record>
+
+            <record id="total_profit" model="account.report.line">
+                <field name="name">三、利润总额</field>
+                <field name="code">TP</field>
+                <field name="expression_ids">
+                    <record id="total_profit_balance" model="account.report.expression">
+                        <field name="label">balance</field>
+                        <field name="engine">aggregation</field>
+                        <field name="formula">OP.balance + cn_6301.balance - cn_6711.balance</field>
+                        <field name="date_scope">normal</field>
+                    </record>
+                </field>
+            </record>
         </field>
     </record>
 </odoo>
