@@ -14,31 +14,33 @@
             </record>
         </field>
         <field name="line_ids">
-            <record id="cn_6001" model="account.report.line">
+            <record id="operating_income0" model="account.report.line">
                 <field name="name">一、营业收入</field>
-                <field name="code">cn_6001</field>
+                <field name="code">cn_OPINC</field>
                 <field name="groupby">account_id</field>
                 <field name="foldable" eval="True"/>
                 <field name="expression_ids">
-                    <record id="cn_6001_balance" model="account.report.expression">
+                    <record id="operating_income0_balance" model="account.report.expression">
                         <field name="label">balance</field>
                         <field name="engine">domain</field>
-                        <field name="formula" eval="[('account_id.code','=like','6001%')]"/>
+                        <field name="formula" eval="[('account_id.account_type', '=', 'income')]"/>
+                        <field name="date_scope">normal</field>
                         <field name="subformula">-sum</field>
                     </record>
                 </field>
             </record>
-            <record id="cn_6401" model="account.report.line">
+            <record id="cost_of_revenue" model="account.report.line">
                 <field name="name">　减：营业成本</field>
-                <field name="code">cn_6401</field>
+                <field name="code">cn_COS</field>
                 <field name="groupby">account_id</field>
                 <field name="foldable" eval="True"/>
                 <field name="expression_ids">
-                    <record id="cn_6401_balance" model="account.report.expression">
+                    <record id="cost_of_revenue_balance" model="account.report.expression">
                         <field name="label">balance</field>
                         <field name="engine">domain</field>
-                        <field name="formula" eval="[('account_id.code','=like','6401%')]"/>
+                        <field name="formula" eval="[('account_id.account_type', '=', 'expense_direct_cost')]"/>
                         <field name="subformula">sum</field>
+                        <field name="green_on_positive" eval="False"/>
                     </record>
                 </field>
             </record>
@@ -222,7 +224,7 @@
                     <record id="operating_profit_balance" model="account.report.expression">
                         <field name="label">balance</field>
                         <field name="engine">aggregation</field>
-                        <field name="formula">cn_6001.balance - cn_6401.balance - cn_6403.balance - cn_6601.balance - cn_6602.balance - cn_5301.balance - cn_6603.balance + cn_6117.balance + cn_6111.balance + cn_6101.balance + cn_6701.balance + cn_6115.balance</field>
+                        <field name="formula">cn_OPINC.balance - cn_COS.balance - cn_6403.balance - cn_6601.balance - cn_6602.balance - cn_5301.balance - cn_6603.balance + cn_6117.balance + cn_6111.balance + cn_6101.balance + cn_6701.balance + cn_6115.balance</field>
                         <field name="date_scope">normal</field>
                     </record>
                 </field>
